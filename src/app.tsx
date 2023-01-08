@@ -129,7 +129,7 @@ export default function App() {
                   minPolarAngle={0}
                   maxPolarAngle={Math.PI / 2}
                   autoRotate
-                  autoRotateSpeed={0.05}
+                  autoRotateSpeed={1.5}
                   makeDefault
                 />
                 <Environment
