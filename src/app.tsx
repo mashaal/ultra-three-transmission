@@ -1,5 +1,5 @@
 import useAsset from "ultra/hooks/use-asset.js";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -7,6 +7,7 @@ import {
   Bounds,
   Center,
   Environment,
+  Loader,
   OrbitControls,
   RandomizedLight,
   useGLTF,
@@ -81,6 +82,7 @@ export function GelatinousCube(props) {
 
 export default function App() {
   const [mount, set] = useState(false);
+  useGLTF.preload("/gelatinous_cube.glb");
   useEffect(() => {
     set(true);
   }, []);
@@ -97,43 +99,46 @@ export default function App() {
       <body>
         <main>
           {mount && (
-            <Canvas shadows camera={{ position: [15, 10, 15], fov: 30 }}>
-              <ambientLight />
-              <Bounds fit observe margin={1.25}>
-                <Center top>
-                  <GelatinousCube />
-                </Center>
-              </Bounds>
-              <AccumulativeShadows
-                temporal
-                frames={100}
-                alphaTest={0.9}
-                color="#3ead5d"
-                colorBlend={1}
-                opacity={1}
-                scale={12}
-              >
-                <RandomizedLight
-                  radius={8}
-                  ambient={0.5}
-                  intensity={1}
-                  position={[2.5, 5, -2.5]}
-                  bias={0.001}
+            <>
+              <Loader />
+              <Canvas shadows camera={{ position: [15, 10, 15], fov: 30 }}>
+                <ambientLight />
+                <Bounds fit observe margin={1.25}>
+                  <Center top>
+                    <GelatinousCube />
+                  </Center>
+                </Bounds>
+                <AccumulativeShadows
+                  temporal
+                  frames={100}
+                  alphaTest={0.9}
+                  color="#3ead5d"
+                  colorBlend={1}
+                  opacity={1}
+                  scale={12}
+                >
+                  <RandomizedLight
+                    radius={8}
+                    ambient={0.5}
+                    intensity={1}
+                    position={[2.5, 5, -2.5]}
+                    bias={0.001}
+                  />
+                </AccumulativeShadows>
+                <OrbitControls
+                  minPolarAngle={0}
+                  maxPolarAngle={Math.PI / 2}
+                  autoRotate
+                  autoRotateSpeed={0.05}
+                  makeDefault
                 />
-              </AccumulativeShadows>
-              <OrbitControls
-                minPolarAngle={0}
-                maxPolarAngle={Math.PI / 2}
-                autoRotate
-                autoRotateSpeed={0.05}
-                makeDefault
-              />
-              <Environment
-                files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/dancing_hall_1k.hdr"
-                background
-                blur={1}
-              />
-            </Canvas>
+                <Environment
+                  files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/dancing_hall_1k.hdr"
+                  background
+                  blur={1}
+                />
+              </Canvas>
+            </>
           )}
         </main>
       </body>
