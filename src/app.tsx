@@ -100,7 +100,7 @@ export default function App() {
         <main>
           {mount && (
             <>
-              <Loader />
+              <Loader dataStyles={{ display: "none" }} />
               <Canvas shadows camera={{ position: [15, 10, 15], fov: 30 }}>
                 <ambientLight />
                 <Bounds fit observe margin={1.25}>
