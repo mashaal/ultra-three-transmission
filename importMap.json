@@ -5,7 +5,7 @@
     "react-dom": "https://esm.sh/react-dom@18.2.0",
     "react-dom/server": "https://esm.sh/react-dom@18.2.0/server",
     "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "three": "https://esm.sh/three?external=react,@react-three/fiber&deps=@use-gesture/core@10.1.0",
+    "three": "https://esm.sh/three@0.148.0?external=react,@react-three/fiber&deps=@use-gesture/core@10.1.0",
     "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.10.0?external=react,@react-three/fiber&deps=@use-gesture/core@10.1.0&bundle",
     "@react-three/drei": "https://esm.sh/@react-three/drei@9.51.12?external=react,@react-three/fiber&deps=@use-gesture/core@10.1.0&bundle",
     "ultra/": "https://deno.land/x/ultra@v2.1.7/"
